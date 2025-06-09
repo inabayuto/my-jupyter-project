@@ -27,7 +27,7 @@ A Python ML/DL/data analysis project.
 
 5. **依存パッケージのインストール**
    ```sh
-   uv pip install -r pyproject.toml
+   uv pip install -r requirements.txt
    ```
 
 ---
