@@ -136,7 +136,7 @@ for epoch in range(epochs):
         running_loss += val_loss.item()
 
         pred_labels_val = torch.argmax(pred_val, dim=-1)
-        true_labels_val = torch.argmax(y_val, dim=-1)
+        true_labels_val = y_val
         correct = torch.sum(pred_labels_val == true_labels_val).item()
         total = y_val.shape[0]
         val_accuracy = correct / total
