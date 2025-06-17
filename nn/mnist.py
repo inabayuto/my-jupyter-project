@@ -3,6 +3,7 @@
 from sklearn import datasets
 from torch.nn import functional as F
 import torch
+import matplotlib.pyplot as plt
 
 learning_rate = 0.03
 loss_log = []
@@ -42,7 +43,7 @@ def cross_entropy(y_true, y_pred):
 
 # %%
 # for文で学習ループ作成
-for epoch in range(5):
+for epoch in range(10):
     running_loss = 0
     for i in range(len(targets)):
         # 入力データXおよび教師ラベルのYを作成
@@ -73,6 +74,16 @@ for epoch in range(5):
 
     # 損失ログ出力
     print(f'epoch: {epoch+1}: {running_loss/len(targets)}')
-print(f'loss: {len(loss_log)}')
-        
+# %%
+# 学習したモデルで全データのaccuracyを計算する（学習に使っているデータに対してのAccuracyであることに注意）
+X = torch.tensor(images, dtype=torch.float32)
+Z = X@W.T + b
+y_pred = softmax(Z)
+# accuracy = 正しく分類できた数/全サンプル数
+correct = torch.sum(torch.argmax(y_pred, dim=-1) == torch.argmax(y_true, dim=-1))
+print(f'correct: {correct.item()}')
+print(f'total: {y_true.shape[0]}')
+print(f'accuracy: {correct.item() / y_true.shape[0]}')
+plt.plot(loss_log)
+plt.show()
 # %%

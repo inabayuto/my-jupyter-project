@@ -61,7 +61,7 @@ A Python ML/DL/data analysis project.
 
 ## uvコマンドの説明
 
-- `uv pip install -r pyproject.toml`
+- `uv pip install -r requirements.txt`
   - `pyproject.toml` で指定した依存パッケージを仮想環境に高速インストールします。
   - 依存関係を自動解決し、必要なバージョンをインストールします。
 

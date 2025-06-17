@@ -111,7 +111,7 @@ print(torch.allclose(Z1.grad, Z1.grad)) # 勾配が同じかどうか
 print(torch.allclose(Z2.grad, Z2.grad)) # 勾配が同じかどうか
 
 
-# %% モデル構築
+# %% 学習ループ
 batch_size = 30
 num_batches = np.ceil(len(y_train) / batch_size).astype(int)
 loss_log = []
@@ -119,7 +119,7 @@ loss_log = []
 train_losses = []
 val_losses = []
 val_accuracies = []
-# or文で学習ループ作成
+# for文で学習ループ作成
 epochs = 30
 for epoch in range(epochs):
     shuffled_indices = np.random.permutation(len(y_train))
@@ -195,3 +195,5 @@ plt.show()
 
 
 
+
+# %%

@@ -120,11 +120,3 @@ print(a + b)
 c = torch.rand((32, 128, 128, 3))
 d = torch.rand((128, 128, 3))
 print(c + d)
-
-# 
-# %%
-# テンソルの連結
-# %%
-a = torch.rand((2, 3))
-b = torch.rand((2, 3))
-# %%
