@@ -15,7 +15,7 @@ class MLP(nn.Module):
         super().__init__()
         self.linear1 = nn.Linear(in_features, hidden_features)
         self.linear2 = nn.Linear(hidden_features, out_features)
-    
+
     def forward(self, x):
         z1 = self.linear1(x)
         a1 = F.relu(z1)
@@ -24,7 +24,7 @@ class MLP(nn.Module):
 
 # %% Optimizerの実装
 class Optimizer():
-    def __init__(self, parameters, lr=0.03):
+    def __init__(self, parameters, lr):
         self.parameters = list(parameters)
         self.lr = lr
 

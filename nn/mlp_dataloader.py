@@ -37,8 +37,8 @@ transform = transforms.Compose([
     transforms.ToTensor(),
     transforms.Normalize((0.5,), (0.5,))
 ])
-train_dataset = datasets.CIFAR10(root='./data', train=True, download=True, transform=transform)
-val_dataset = datasets.CIFAR10(root='./data', train=False, download=True, transform=transform)
+train_dataset = datasets.CIFAR10(root='./CIFAR10_data', train=True, download=True, transform=transform)
+val_dataset = datasets.CIFAR10(root='./CIFAR10_data', train=False, download=True, transform=transform)
 
 # %% DataLoader
 batch_size = 32
@@ -154,6 +154,3 @@ print(images.shape)
 grid = torchvision.utils.make_grid(images)
 plt.imshow(grid.permute(1, 2, 0))
 print(labels)
-
-
-# %%
