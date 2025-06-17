@@ -76,7 +76,7 @@ opt = optim.Adam(model.parameters(), lr=0.001, weight_decay=0.01)  # weight_deca
 early_stopping_epochs = 5
 
 # %% 学習ループを回す
-def train_model(model, train_loader, val_loader, opt, num_epochs, early_stopping_epochs): 
+def train_model(model, train_loader, val_loader, opt, num_epochs, early_stopping_epochs, save_path=None): 
     train_losses = []
     val_losses = []
     val_accuracies = []
@@ -128,7 +128,16 @@ def train_model(model, train_loader, val_loader, opt, num_epochs, early_stopping
         if run_val_loss < best_val_loss:
             best_val_loss = run_val_loss
             no_improvement_epochs = 0
-            torch.save(model.state_dict(), 'best_model.pth')
+            if save_path is not None:
+                state = {
+                    'model_state_dict': model.state_dict(),
+                    'optimizer_state_dict': opt.state_dict(),
+                    'epoch': epoch,
+                    'val_loss': run_val_loss,
+                    'val_accuracy': run_val_acc
+                }
+                torch.save(state, save_path)
+                # print(f'Model saved to {save_path}')
         else:
             no_improvement_epochs += 1
         
@@ -137,23 +146,23 @@ def train_model(model, train_loader, val_loader, opt, num_epochs, early_stopping
             break
 
  # %% 学習
- train_model(model, train_loader, val_loader, opt, num_epochs=30, early_stopping_epochs=5)
+ train_model(model, train_loader, val_loader, opt, num_epochs=30, early_stopping_epochs=5, save_path='checkpoint')
 
- # %% モデルの読み込み
- model.load_state_dict(torch.load('best_model.pth'))
+ # %% modelオブジェクトの保存とロード
+ torch.save(model.state_dict(), 'best_model.pth')
 
- # %% モデルの評価
- model.eval()
- with torch.no_grad():
+# %% 
+load_model = torch.load('best_model.pth')
+print(load_model)
+
+# %% modelパラメータの保存とロード
+params = model.state_dict()
+other_model = MLP(input_size=64, hidden_size=64, output_size=10)
+other_model.load_state_dict(params)
+torch.save(other_model.state_dict(), 'best_model_state_dict.pth')
 
 # %%
-plt.xlabel("Epoch")
-plt.ylabel("Loss")
-plt.title("Training and Validation Loss")
-plt.grid()
-plt.plot(train_losses, label="train")
-plt.plot(val_losses, label="val")
-plt.legend()
-plt.show()   
+to_load = torch.load('checkpoint')
+print(to_load)
 
 # %%

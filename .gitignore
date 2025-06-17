@@ -1,0 +1,4 @@
+*.pth
+checkpoint
+CIFAR10_data/
+nn/data/
