@@ -20,12 +20,17 @@ A Python ML/DL/data analysis project.
    which uv
    ```
 
-4. **Pythonバージョン指定で仮想環境作成**
+4. **仮想環境構築**
+   ```
+   source .venv/bin/activate
+   ```
+
+5. **Pythonバージョン指定で仮想環境作成**
    ```sh
    uv venv --python 3.11
    ```
 
-5. **依存パッケージのインストール**
+6. **依存パッケージのインストール**
    ```sh
    uv pip install -r pyproject.toml
    ```
