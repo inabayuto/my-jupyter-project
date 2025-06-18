@@ -2,3 +2,7 @@
 checkpoint
 CIFAR10_data/
 nn/data/
+
+# Kaggle data
+kaggle/data/
+kaggle/data/home-credit-default-risk/
