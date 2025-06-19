@@ -8,13 +8,6 @@ import os
 import gc
 import warnings
 from sklearn.preprocessing import LabelEncoder
-from sklearn.preprocessing import StandardScaler
-from sklearn.model_selection import train_test_split
-from sklearn.linear_model import LogisticRegression
-from sklearn.model_selection import StratifiedKFold
-from sklearn.metrics import accuracy_score
-from sklearn.metrics import roc_auc_score
-from sklearn.metrics import roc_curve
 import lightgbm as lgb
 import json  # 追加
 import datetime as dt # 追加
@@ -289,5 +282,3 @@ metrics_df = pd.DataFrame(metrics, columns=['target', 'fold', 'mae_train', 'mae_
 print(f'mcmae: {metrics_df["mae_val"].mean():.4f}')
 display(pd.pivot_table(metrics_df, index='fold', columns='target', values='mae_val',
 aggfunc='mean', margins=True))
-
-# %%
